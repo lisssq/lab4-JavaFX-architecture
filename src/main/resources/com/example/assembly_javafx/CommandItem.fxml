@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="moveUpButton" layoutY="-1.0" mnemonicParsing="false" onAction="#handleMoveUpButtonClick" text="Вверх" />
+      <Button fx:id="moveDownButton" layoutX="56.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleMoveDownButtonClick" text="Вниз" />
+      <Button fx:id="deleteButton" layoutX="108.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleDeleteButtonClick" text="X" />
+      <Label fx:id="commandNameString" layoutX="150.0" layoutY="3.0" text="INIT" />
+      <Label fx:id="commandArgsString" layoutX="184.0" layoutY="3.0" text="[10, 10, 20]" />
+   </children>
+</Pane>

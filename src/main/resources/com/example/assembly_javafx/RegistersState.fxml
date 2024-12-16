@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assembly_javafx.RegistersStateController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="27.399993896484375" minWidth="10.0" prefWidth="25.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label alignment="TOP_LEFT" style="-fx-text-alignment: left;" text="R1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label alignment="TOP_LEFT" style="-fx-text-alignment: left;" text="R2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label alignment="TOP_LEFT" style="-fx-text-alignment: left;" text="R3" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label alignment="TOP_LEFT" style="-fx-text-alignment: left;" text="R4" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="register1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+      <Label fx:id="register2" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+      <Label fx:id="register3" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+      <Label fx:id="register4" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+      <Label style="-fx-text-alignment: left;" text="Значения регистров" GridPane.columnSpan="2" GridPane.halignment="LEFT">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</GridPane>

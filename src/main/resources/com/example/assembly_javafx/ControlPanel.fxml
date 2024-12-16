@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assembly_javafx.ControlPanelController">
+   <children>
+      <Button fx:id="addButton" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddButtonClick" text="Добавить" />
+      <Button layoutX="10.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleDiscardButtonClick" text="Сбросить" />
+      <TextField fx:id="commandTextField" layoutX="118.0" layoutY="14.0" prefHeight="25.0" prefWidth="147.0" />
+      <Button fx:id="nextButton" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleNextButtonClick" text="Следующая инструкция" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</Pane>
