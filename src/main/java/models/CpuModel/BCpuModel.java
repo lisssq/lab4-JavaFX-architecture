@@ -1,9 +1,11 @@
 package models.CpuModel;
 
-public class BCpuModel {
+public class BCpuModel
+{
     static ICpuModel cpu = new CpuModel();
 
-    public static ICpuModel build() {
+    public static ICpuModel build()
+    {
         return cpu;
     }
 }

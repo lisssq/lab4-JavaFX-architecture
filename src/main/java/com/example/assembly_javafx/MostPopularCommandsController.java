@@ -13,23 +13,27 @@ import models.ProgramModel.IProgramModel;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class MostPopularCommandsController implements IObserver {
+public class MostPopularCommandsController implements IObserver
+{
     IProgramModel programModel = BProgramModel.build();
 
     @FXML
     GridPane mostPopularCommands;
 
     @FXML
-    void initialize() {
+    void initialize()
+    {
         programModel.addObserver(this);
     }
 
     @Override
-    public void event(IProgramModel m) {
+    public void event(IProgramModel m)
+    {
         ArrayList<Map.Entry<InstuctionNames, Integer>> sortedCommandCountList = m.getSortedCommandsCount();
         mostPopularCommands.getChildren().clear();
 
-        for (int i = 0; i < sortedCommandCountList.size(); i++) {
+        for (int i = 0; i < sortedCommandCountList.size(); i++)
+        {
             Map.Entry<InstuctionNames, Integer> command = sortedCommandCountList.get(i);
 
             Label commandName = new Label();
@@ -44,10 +48,12 @@ public class MostPopularCommandsController implements IObserver {
     }
 
     @Override
-    public void event(ICpuModel c) {
+    public void event(ICpuModel c)
+    {
     }
 
     @Override
-    public void event(IExecuterModel e) {
+    public void event(IExecuterModel e)
+    {
     }
 }

@@ -13,7 +13,8 @@ import models.ExecuterModel.IExecuterModel;
 import models.ProgramModel.BProgramModel;
 import models.ProgramModel.IProgramModel;
 
-public class ControlPanelController implements IObserver {
+public class ControlPanelController implements IObserver
+{
     IProgramModel programModel = BProgramModel.build();
     IExecuterModel executerModel = BExecuterModel.build();
 
@@ -21,61 +22,75 @@ public class ControlPanelController implements IObserver {
     Button addButton;
 
     @FXML
-    TextField commandTextField;
+    TextField commandTextField;     // текстовое поле в которую пользователь вводит команду
 
     @FXML
     Button nextButton;
 
     @FXML
-    void initialize() {
+    void initialize()
+    {
         executerModel.addObserver(this);
     }
 
     @FXML
-    void handleAddButtonClick() {
-        String commandString = commandTextField.getText();
+    void handleAddButtonClick()     // при нажатии на кнопку добавления инструкции
+    {
+        String commandString = commandTextField.getText();  // получаем текст из текстового поля
 
-        if (commandString.isEmpty()) return;
+        if (commandString.isEmpty())
+        {
+            return;     // если пустая строка, то ничего не делаем
+        }
 
-        ICommandModel command = BCommandModel.build(commandString);
+        ICommandModel command = BCommandModel.build(commandString); // иначе создаем новую команду и добавляем в модель
         programModel.add(command);
 
         commandTextField.clear();
     }
 
     @FXML
-    void handleNextButtonClick() throws Exception {
+    void handleNextButtonClick() throws Exception       // при нажатии на кнопку следующей инструкции
+    {
         executerModel.next();
     }
 
     @FXML
-    void handleDiscardButtonClick() throws Exception {
+    void handleDiscardButtonClick() throws Exception    // при нажатии на кнопку !отмена!
+    {
         executerModel.discard();
     }
 
     @Override
-    public void event(IProgramModel m) {
+    public void event(IProgramModel m)
+    {
     }
 
     @Override
-    public void event(ICpuModel c) {
+    public void event(ICpuModel c)
+    {
     }
 
     @Override
-    public void event(IExecuterModel e) {
-        switch (executerModel.getState()) {
-            case ExecuterState.IDE -> {
+    public void event(IExecuterModel e)
+    {
+        switch (executerModel.getState())
+        {
+            case ExecuterState.IDE ->       // если готово к выполнению, то можно тыкать на кнопки
+            {
                 nextButton.setText("Начать программу");
                 nextButton.setDisable(false);
                 addButton.setDisable(false);
                 commandTextField.setDisable(false);
             }
-            case ExecuterState.RUNNING -> {
+            case ExecuterState.RUNNING ->       // если выполняется, то уже нельзя
+            {
                 nextButton.setText("Выполнить следущую");
                 addButton.setDisable(true);
                 commandTextField.setDisable(true);
             }
-            case ExecuterState.ENDED -> {
+            case ExecuterState.ENDED ->
+            {
                 nextButton.setDisable(true);
                 addButton.setDisable(true);
                 commandTextField.setDisable(true);

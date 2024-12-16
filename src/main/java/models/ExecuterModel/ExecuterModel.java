@@ -8,28 +8,33 @@ import models.ProgramModel.IProgramModel;
 
 import java.util.ArrayList;
 
-public class ExecuterModel implements IExecuterModel {
+public class ExecuterModel implements IExecuterModel
+{
     private final ICpuModel cpuModel = BCpuModel.build();
     private final IProgramModel programModel = BProgramModel.build();
     ArrayList<IObserver> observers = new ArrayList<>();
     private int iteration = -1;
     private ExecuterState state = ExecuterState.IDE;
 
-    void notifyObservers() {
+    void notifyObservers()
+    {
         observers.forEach(action -> action.event(this));
     }
 
-    public void addObserver(IObserver e) {
+    public void addObserver(IObserver e)
+    {
         observers.add(e);
 
         notifyObservers();
     }
 
-    public void next() throws Exception {
+    public void next() throws Exception
+    {
         iteration++;
         setState(ExecuterState.RUNNING);
 
-        if (iteration + 1 <= programModel.size()) {
+        if (iteration + 1 <= programModel.size())
+        {
             cpuModel.execute(programModel.get(iteration));
         } else {
             setState(ExecuterState.ENDED);
@@ -38,7 +43,8 @@ public class ExecuterModel implements IExecuterModel {
         notifyObservers();
     }
 
-    public void discard() {
+    public void discard()
+    {
         setState(ExecuterState.IDE);
         setIteration(-1);
 
@@ -47,19 +53,23 @@ public class ExecuterModel implements IExecuterModel {
         notifyObservers();
     }
 
-    public int getIteration() {
+    public int getIteration()
+    {
         return iteration;
     }
 
-    public void setIteration(int _iteration) {
+    public void setIteration(int _iteration)
+    {
         iteration = _iteration;
     }
 
-    public ExecuterState getState() {
+    public ExecuterState getState()
+    {
         return state;
     }
 
-    public void setState(ExecuterState _state) {
+    public void setState(ExecuterState _state)
+    {
         state = _state;
     }
 }

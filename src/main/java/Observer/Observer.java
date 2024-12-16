@@ -1,4 +1,5 @@
 package Observer;
 
-public class Observer {
+public class Observer
+{
 }

@@ -7,25 +7,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CpuModel implements ICpuModel {
+public class CpuModel implements ICpuModel
+{
     private final Map<String, Integer> registers = new HashMap<>();
     ArrayList<IObserver> observers = new ArrayList<>();
     private int[] memo = new int[1024];
 
-    public CpuModel() {
+    public CpuModel()
+    {
         setDefaultRegistersState();
     }
 
-    void notifyObservers() {
+    void notifyObservers()
+    {
         observers.forEach(action -> action.event(this));
     }
 
-    public void addObserver(IObserver e) {
+    public void addObserver(IObserver e)
+    {
         observers.add(e);
         notifyObservers();
     }
 
-    private void setDefaultRegistersState() {
+    private void setDefaultRegistersState()
+    {
         registers.put("r1", 0);
         registers.put("r2", 0);
         registers.put("r3", 0);
@@ -34,26 +39,31 @@ public class CpuModel implements ICpuModel {
         notifyObservers();
     }
 
-    public Map<String, Integer> getRegisters() {
+    public Map<String, Integer> getRegisters()
+    {
         return registers;
     }
 
-    public void setDefaultCpuState() {
+    public void setDefaultCpuState()
+    {
         setDefaultRegistersState();
         memo = new int[1024];
 
         notifyObservers();
     }
 
-    public int[] getMemo() {
+    public int[] getMemo()
+    {
         return memo;
     }
 
-    public void execute(ICommandModel c) {
+    public void execute(ICommandModel c)
+    {
         InstuctionNames name = c.getName();
         String[] arguments = c.getArgs();
 
-        switch (name) {
+        switch (name)
+        {
             case InstuctionNames.init: // инициализация памяти по адресу значением
                 memo[Integer.parseInt(arguments[0])] = Integer.parseInt(arguments[1]);
                 break;
@@ -84,7 +94,6 @@ public class CpuModel implements ICpuModel {
             default:
                 System.out.println("Неизвестная команда");
         }
-
         notifyObservers();
     }
 }

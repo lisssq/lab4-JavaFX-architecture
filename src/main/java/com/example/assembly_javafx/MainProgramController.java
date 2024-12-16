@@ -6,14 +6,16 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-public class MainProgramController {
+public class MainProgramController
+{
 
     @FXML
     GridPane main;
 
     @FXML
-    void initialize() throws Exception {
-
+    void initialize() throws Exception
+    {
+        // создаем контроллеры для всех компонентов, которые мы будем загружать
         ControlPanelController controlPanelController = new ControlPanelController();
         FXMLLoader controlPanelLoader = new FXMLLoader(app.class.getResource("ControlPanel.fxml"));
 
@@ -29,7 +31,8 @@ public class MainProgramController {
         MostPopularCommandsController mostPopularCommandsController = new MostPopularCommandsController();
         FXMLLoader mostPopularCommandsLoader = new FXMLLoader(app.class.getResource("MostPopularCommands.fxml"));
 
-        try {
+        try
+        {
             Pane controlPanel = controlPanelLoader.load();
             main.add(controlPanel, 0, 0);
 
@@ -45,7 +48,9 @@ public class MainProgramController {
             Pane mostPopularCommands = mostPopularCommandsLoader.load();
             main.add(mostPopularCommands, 1, 1);
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             throw new Exception(e);
         }
     }

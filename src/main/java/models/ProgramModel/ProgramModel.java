@@ -11,13 +11,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ProgramModel implements Iterable<ICommandModel>, IProgramModel {
+public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
+{
     private final ArrayList<ICommandModel> commands;
     ArrayList<IObserver> observers = new ArrayList<>();
     private int minMem = 1025;
     private int maxMem = -1;
 
-    public ProgramModel() {
+    public ProgramModel()
+    {
         commands = new ArrayList<ICommandModel>();
 
         commands.add(BCommandModel.build("init 10 20"));
@@ -36,26 +38,31 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel {
         notifyObservers();
     }
 
-    public ProgramModel(ArrayList<ICommandModel> _commands) {
+    public ProgramModel(ArrayList<ICommandModel> _commands)
+    {
         commands = _commands;
 
         notifyObservers();
     }
 
-    void notifyObservers() {
+    void notifyObservers()
+    {
         observers.forEach(action -> action.event(this));
     }
 
-    public void addObserver(IObserver e) {
+    public void addObserver(IObserver e)
+    {
         observers.add(e);
 
         notifyObservers();
     }
 
-    public void add(ICommandModel command) {
+    public void add(ICommandModel command)
+    {
         commands.add(command);
 
-        if (command.getName().equals(InstuctionNames.init)) {
+        if (command.getName().equals(InstuctionNames.init))
+        {
             int memory = Integer.parseInt(command.getArgs()[0]);
 
             minMem = Math.min(minMem, memory);
@@ -65,7 +72,8 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel {
         notifyObservers();
     }
 
-    public ICommandModel get(int i) throws Exception {
+    public ICommandModel get(int i) throws Exception
+    {
         if (i < 0 || i > commands.size()) {
             throw new Exception("index is out of range");
         }
@@ -73,7 +81,8 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel {
         return commands.get(i);
     }
 
-    public void remove(int i) throws Exception {
+    public void remove(int i) throws Exception
+    {
         if (i < 0 || i > commands.size()) {
             throw new Exception("index is out of range");
         }
@@ -83,11 +92,13 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel {
         notifyObservers();
     }
 
-    public int size() {
+    public int size()
+    {
         return commands.size();
     }
 
-    public ArrayList<Map.Entry<InstuctionNames, Integer>> getSortedCommandsCount() {
+    public ArrayList<Map.Entry<InstuctionNames, Integer>> getSortedCommandsCount()
+    {
         return commands.stream().collect(Collectors.groupingBy(
                         ICommandModel::getName,
                         Collectors.summingInt(_ -> 1)))
@@ -96,15 +107,18 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public InstuctionNames getPopularInstructionName() {
+    public InstuctionNames getPopularInstructionName()
+    {
         return getSortedCommandsCount().getLast().getKey();
     }
 
-    public Integer[] getRangeOfMemory() {
+    public Integer[] getRangeOfMemory()
+    {
         return new Integer[]{minMem, maxMem};
     }
 
-    public void swap(int i, int j) {
+    public void swap(int i, int j)
+    {
         ICommandModel temp = commands.get(i);
 
         commands.set(i, commands.get(j));
@@ -114,7 +128,8 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel {
     }
 
     @Override
-    public Iterator<ICommandModel> iterator() {
+    public Iterator<ICommandModel> iterator()
+    {
         return commands.iterator();
     }
 }

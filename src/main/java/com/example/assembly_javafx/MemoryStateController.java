@@ -9,28 +9,34 @@ import models.CpuModel.ICpuModel;
 import models.ExecuterModel.IExecuterModel;
 import models.ProgramModel.IProgramModel;
 
-public class MemoryStateController implements IObserver {
+public class MemoryStateController implements IObserver
+{
     ICpuModel cpuModel = BCpuModel.build();
 
     @FXML
     GridPane memoryList;
 
     @FXML
-    public void initialize() {
+    public void initialize()
+    {
         cpuModel.addObserver(this);
     }
 
     @Override
-    public void event(IProgramModel m) {
+    public void event(IProgramModel m)
+    {
     }
 
     @Override
-    public void event(ICpuModel c) {
+    public void event(ICpuModel c)
+    {
         memoryList.getChildren().clear();
         int[] memory = cpuModel.getMemo();
 
-        for (int i = 0; i < memory.length; i = i + 4) {
-            for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < memory.length; i = i + 4)
+        {
+            for (int j = 0; j < 4; j++)
+            {
                 Label memoryCellLabel = new Label();
                 memoryCellLabel.setText(i + j + ":" + memory[i + j]);
 
@@ -40,6 +46,7 @@ public class MemoryStateController implements IObserver {
     }
 
     @Override
-    public void event(IExecuterModel e) {
+    public void event(IExecuterModel e)
+    {
     }
 }

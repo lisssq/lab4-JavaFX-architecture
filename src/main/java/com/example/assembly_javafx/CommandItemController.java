@@ -15,7 +15,7 @@ public class CommandItemController implements IObserver {
     IProgramModel programModel = BProgramModel.build();
     IExecuterModel executerModel = BExecuterModel.build();
 
-    int index;
+    int index;  // индекс текущей команды
     @FXML
     Label commandNameString;
     @FXML
@@ -27,70 +27,86 @@ public class CommandItemController implements IObserver {
     @FXML
     Button moveDownButton;
 
-    int getIndex() {
+    int getIndex()
+    {
         return index;
     }
 
-    void setIndex(int _index) {
+    void setIndex(int _index)
+    {
         index = _index;
     }
 
     @FXML
-    void initialize() {
+    void initialize()
+    {
         executerModel.addObserver(this);
     }
 
-    void setCommandNameString(String _commandNameString) {
+    void setCommandNameString(String _commandNameString)
+    {
         commandNameString.setText(_commandNameString);
     }
 
-    void setCommandArgsString(String _commandArgsString) {
+    void setCommandArgsString(String _commandArgsString)
+    {
         commandArgsString.setText(_commandArgsString);
     }
 
     @FXML
-    void handleDeleteButtonClick() throws Exception {
+    void handleDeleteButtonClick() throws Exception       // удаляем команду по текущему индексу
+    {
         programModel.remove(index);
     }
 
     @FXML
-    void handleMoveUpButtonClick() throws Exception {
+    void handleMoveUpButtonClick() throws Exception       // двигаем команду по текущему индексу вверх
+    {
         programModel.swap(index, index - 1);
     }
 
     @FXML
-    void handleMoveDownButtonClick() throws Exception {
+    void handleMoveDownButtonClick() throws Exception     // двигаем команду по текущему индексу вниз
+    {
         programModel.swap(index, index + 1);
     }
 
     @Override
-    public void event(IProgramModel m) {
-
+    public void event(IProgramModel m)
+    {
     }
 
     @Override
-    public void event(ICpuModel c) {
+    public void event(ICpuModel c)
+    {
     }
 
     @Override
-    public void event(IExecuterModel e) {
-        switch (executerModel.getState()) {
-            case IDE -> {
+    public void event(IExecuterModel e)
+    {
+        switch (executerModel.getState())
+        {
+            case IDE ->             // кнопки включены, можно перемещать или удалять комнады
+            {
                 moveDownButton.setDisable(false);
                 moveUpButton.setDisable(false);
                 deleteButton.setDisable(false);
             }
-            case ENDED, RUNNING -> {
+            case ENDED, RUNNING ->  // кнопки выключены, программа или выполняется, или завершилась
+            {
                 moveDownButton.setDisable(true);
                 moveUpButton.setDisable(true);
                 deleteButton.setDisable(true);
             }
         }
-
-        if (executerModel.getIteration() == index) {
+        // выделяем текущую команду цветом
+        if (executerModel.getIteration() == index)  // если текущая итерация совпадает индексом команды в списке,
+        {                                           // то выделяем команду красным цветом
             commandNameString.setTextFill(Color.RED);
             commandArgsString.setTextFill(Color.RED);
-        } else {
+        }
+        else
+        {
             commandNameString.setTextFill(Color.BLACK);
             commandArgsString.setTextFill(Color.BLACK);
         }

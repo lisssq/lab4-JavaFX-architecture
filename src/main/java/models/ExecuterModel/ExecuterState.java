@@ -1,6 +1,7 @@
 package models.ExecuterModel;
 
-public enum ExecuterState {
+public enum ExecuterState
+{
     IDE,
     RUNNING,
     ENDED,

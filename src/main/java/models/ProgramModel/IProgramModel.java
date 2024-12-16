@@ -7,7 +7,8 @@ import models.CpuModel.InstuctionNames;
 import java.util.ArrayList;
 import java.util.Map;
 
-public interface IProgramModel {
+public interface IProgramModel
+{
     void add(ICommandModel command);
 
     void remove(int i) throws Exception;

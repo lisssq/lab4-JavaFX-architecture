@@ -12,44 +12,53 @@ import models.ProgramModel.IProgramModel;
 
 import java.util.Arrays;
 
-public class CommandListController implements IObserver {
+public class CommandListController implements IObserver
+{
     @FXML
     GridPane commandList;
     IProgramModel programModel = BProgramModel.build();
 
     @FXML
-    void initialize() {
+    void initialize()
+    {
         programModel.addObserver(this);
     }
 
     @Override
-    public void event(IProgramModel m) {
-        commandList.getChildren().clear();
+    public void event(IProgramModel m)
+    {
+        commandList.getChildren().clear();  // очищаем список команд, чтобы удалить старые данные
 
-        for (int i = 0; i < programModel.size(); i++) {
-            try {
+        for (int i = 0; i < programModel.size(); i++)   // проходим по всем командам
+        {
+            try     // для каждой создаем объект CommandItemController который будет управлять отображением конкретной команды
+            {
                 CommandItemController commandItemController = new CommandItemController();
 
                 FXMLLoader commandItemLoader = new FXMLLoader(app.class.getResource("CommandItem.fxml"));
                 commandItemLoader.setController(commandItemController);
                 Pane commandItem = commandItemLoader.load();
 
-                commandItemController.setIndex(i);
-                commandItemController.setCommandNameString(String.valueOf(programModel.get(i).getName()));
-                commandItemController.setCommandArgsString(Arrays.toString(programModel.get(i).getArgs()));
+                commandItemController.setIndex(i);      // задаем индекс текущей команды
+                commandItemController.setCommandNameString(String.valueOf(programModel.get(i).getName()));  // устанавливаем имя
+                commandItemController.setCommandArgsString(Arrays.toString(programModel.get(i).getArgs())); //задаем аргументы
 
-                commandList.addColumn(programModel.size(), commandItem);
-            } catch (Exception e) {
+                commandList.addColumn(programModel.size(), commandItem);    // добавляем каждый команды в интерфейс
+            }
+            catch (Exception e)
+            {
                 throw new RuntimeException(e);
             }
         }
     }
 
     @Override
-    public void event(ICpuModel c) {
+    public void event(ICpuModel c)
+    {
     }
 
     @Override
-    public void event(IExecuterModel e) {
+    public void event(IExecuterModel e)
+    {
     }
 }

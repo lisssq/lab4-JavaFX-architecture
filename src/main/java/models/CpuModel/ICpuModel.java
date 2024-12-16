@@ -5,7 +5,8 @@ import models.CommandModel.ICommandModel;
 
 import java.util.Map;
 
-public interface ICpuModel {
+public interface ICpuModel
+{
     void execute(ICommandModel c);
 
     void setDefaultCpuState();

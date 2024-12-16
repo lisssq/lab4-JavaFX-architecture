@@ -8,7 +8,8 @@ import models.CpuModel.ICpuModel;
 import models.ExecuterModel.IExecuterModel;
 import models.ProgramModel.IProgramModel;
 
-public class RegistersStateController implements IObserver {
+public class RegistersStateController implements IObserver
+{
     ICpuModel cpuModel = BCpuModel.build();
 
     @FXML
@@ -24,17 +25,20 @@ public class RegistersStateController implements IObserver {
     Label register4;
 
     @FXML
-    public void initialize() {
+    public void initialize()
+    {
         cpuModel.addObserver(this);
     }
 
 
     @Override
-    public void event(IProgramModel m) {
+    public void event(IProgramModel m)
+    {
     }
 
     @Override
-    public void event(ICpuModel c) {
+    public void event(ICpuModel c)
+    {
         register1.setText(String.valueOf(c.getRegisters().get("r1")));
         register2.setText(String.valueOf(c.getRegisters().get("r2")));
         register3.setText(String.valueOf(c.getRegisters().get("r3")));
@@ -42,6 +46,7 @@ public class RegistersStateController implements IObserver {
     }
 
     @Override
-    public void event(IExecuterModel e) {
+    public void event(IExecuterModel e)
+    {
     }
 }
