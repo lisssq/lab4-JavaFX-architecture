@@ -31,13 +31,13 @@ public class MainProgramController
         MostPopularCommandsController mostPopularCommandsController = new MostPopularCommandsController();
         FXMLLoader mostPopularCommandsLoader = new FXMLLoader(app.class.getResource("MostPopularCommands.fxml"));
 
-        try
+        try         // загрузка и добавление компонентов на основную сетку
         {
             Pane controlPanel = controlPanelLoader.load();
             main.add(controlPanel, 0, 0);
 
             ScrollPane commandList = commandListLoader.load();
-            main.add(commandList, 0, 1, 1, 2);
+            main.add(commandList, 0, 1, 1, 2);      // занимает пространство с 0 строки и 1 столбца (2 ряда)
 
             Pane memoryState = memoryStateLoader.load();
             main.add(memoryState, 1, 2);

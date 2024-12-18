@@ -15,7 +15,7 @@ public class CpuModel implements ICpuModel
 
     public CpuModel()
     {
-        setDefaultRegistersState();
+        setDefaultRegistersState();     // установка начальных значений для регистров ( = 0 )
     }
 
     void notifyObservers()
@@ -29,7 +29,7 @@ public class CpuModel implements ICpuModel
         notifyObservers();
     }
 
-    private void setDefaultRegistersState()
+    private void setDefaultRegistersState()     // сброс процессора в начальное состояние, чистая память и регистры = 0
     {
         registers.put("r1", 0);
         registers.put("r2", 0);
@@ -64,25 +64,25 @@ public class CpuModel implements ICpuModel
 
         switch (name)
         {
-            case InstuctionNames.init: // инициализация памяти по адресу значением
+            case InstuctionNames.init: // инициализация памяти по адресу значением  (адрес памяти - значение)
                 memo[Integer.parseInt(arguments[0])] = Integer.parseInt(arguments[1]);
                 break;
-            case InstuctionNames.mv: // копирование из регистра в регистр
+            case InstuctionNames.mv: // копирование из регистра в регистр  (регистр куда положить - регистр источник)
                 registers.put(arguments[0], registers.get(arguments[1]));
                 break;
-            case InstuctionNames.ld: // загрузка данных из памяти в регистр
+            case InstuctionNames.ld: // загрузка данных из памяти в регистр (регистр куда положить - ячейка-источник)
                 registers.put(arguments[0], memo[Integer.parseInt(arguments[1])]);
                 break;
-            case InstuctionNames.st: // загрузка данных из регистра в память
+            case InstuctionNames.st: // загрузка данных из регистра в память    (регистр-источник - адрес памяти)
                 memo[Integer.parseInt(arguments[1])] = registers.get(arguments[0]);
                 break;
-            case InstuctionNames.mult: // берет значение в регистре "r1" умножает с значением из регистра "r2" и записывает в "r4"
+            case InstuctionNames.mult: // берет значение в регистре "r1" умножает со значением из регистра "r2" и записывает в "r4"
                 registers.put("r4", registers.get("r1") * registers.get("r2"));
                 break;
             case InstuctionNames.div: // берет значение в регистре "r1" делит на значение из регистра "r2" и записывает в "r4"
                 registers.put("r4", registers.get("r1") / registers.get("r3"));
                 break;
-            case InstuctionNames.add: // берет значение в регистре "r1" складывают с значением из регистра "r2" и записывает в "r4"
+            case InstuctionNames.add: // берет значение в регистре "r1" складывают со значением из регистра "r2" и записывает в "r4"
                 registers.put("r4", registers.get("r1") + registers.get("r2"));
                 break;
             case InstuctionNames.sub: // берет значение в регистре "r1" вычитает из него значение из регистра "r2" и записывает в "r4"

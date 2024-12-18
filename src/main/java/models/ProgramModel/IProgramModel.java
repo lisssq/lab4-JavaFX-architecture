@@ -11,11 +11,11 @@ public interface IProgramModel
 {
     void add(ICommandModel command);
 
-    void remove(int i) throws Exception;
+    void remove(int i) throws Exception;        // удаление команды по индексу
 
-    int size();
+    int size();         // кол-во команд
 
-    ICommandModel get(int i) throws Exception;
+    ICommandModel get(int i) throws Exception;      // получение команд по индексу
 
     InstuctionNames getPopularInstructionName();
 

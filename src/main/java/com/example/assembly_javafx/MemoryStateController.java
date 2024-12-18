@@ -11,7 +11,7 @@ import models.ProgramModel.IProgramModel;
 
 public class MemoryStateController implements IObserver
 {
-    ICpuModel cpuModel = BCpuModel.build();
+    ICpuModel cpuModel = BCpuModel.build();         // модель процессора для взаимодействия с контроллером
 
     @FXML
     GridPane memoryList;
@@ -28,12 +28,12 @@ public class MemoryStateController implements IObserver
     }
 
     @Override
-    public void event(ICpuModel c)
+    public void event(ICpuModel c)          // вызываем когда процессор ICpuModel обновляется
     {
         memoryList.getChildren().clear();
-        int[] memory = cpuModel.getMemo();
+        int[] memory = cpuModel.getMemo();      // возвращаем массив чисел которые представляют состояние памяти
 
-        for (int i = 0; i < memory.length; i = i + 4)
+        for (int i = 0; i < memory.length; i = i + 4)       // каждая строка содержит по 4 значения памяти
         {
             for (int j = 0; j < 4; j++)
             {

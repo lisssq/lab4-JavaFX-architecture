@@ -86,7 +86,7 @@ public class CommandItemController implements IObserver {
     {
         switch (executerModel.getState())
         {
-            case IDE ->             // кнопки включены, можно перемещать или удалять комнады
+            case IDLE ->             // кнопки включены, можно перемещать или удалять комнады
             {
                 moveDownButton.setDisable(false);
                 moveUpButton.setDisable(false);

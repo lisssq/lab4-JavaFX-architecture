@@ -14,7 +14,7 @@ public class ExecuterModel implements IExecuterModel
     private final IProgramModel programModel = BProgramModel.build();
     ArrayList<IObserver> observers = new ArrayList<>();
     private int iteration = -1;
-    private ExecuterState state = ExecuterState.IDE;
+    private ExecuterState state = ExecuterState.IDLE;
 
     void notifyObservers()
     {
@@ -43,12 +43,12 @@ public class ExecuterModel implements IExecuterModel
         notifyObservers();
     }
 
-    public void discard()
+    public void discard()           // отмена, сброс состояния
     {
-        setState(ExecuterState.IDE);
-        setIteration(-1);
+        setState(ExecuterState.IDLE);
+        setIteration(-1);           // сбрасываем номер инструкции
 
-        cpuModel.setDefaultCpuState();
+        cpuModel.setDefaultCpuState();  // сбрасываем состояние процессора
 
         notifyObservers();
     }
@@ -58,17 +58,17 @@ public class ExecuterModel implements IExecuterModel
         return iteration;
     }
 
-    public void setIteration(int _iteration)
+    public void setIteration(int _iteration)        // устанавливаем номер инструкции
     {
         iteration = _iteration;
     }
 
-    public ExecuterState getState()
+    public ExecuterState getState()                 // получаем текущее состояние исполнителя
     {
         return state;
     }
 
-    public void setState(ExecuterState _state)
+    public void setState(ExecuterState _state)      // устанавливаем состояние исполнителя
     {
         state = _state;
     }

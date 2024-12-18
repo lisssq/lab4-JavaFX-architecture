@@ -2,7 +2,7 @@ package models.ExecuterModel;
 
 public enum ExecuterState
 {
-    IDE,
+    IDLE,        // ожидание
     RUNNING,
     ENDED,
 }

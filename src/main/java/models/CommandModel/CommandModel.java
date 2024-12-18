@@ -7,8 +7,8 @@ public class CommandModel implements ICommandModel
     private final InstuctionNames name;
     private final String[] arguments;
 
-    public CommandModel(String c)
-    {
+    public CommandModel(String c)       // конструктор, разбивающий строку с инструкцией
+    {                                   // (например: mv r1, r2) на части, таким образом отделяя имя команды от аргументов
         String[] sections = c.split(" ");
 
         name = InstuctionNames.valueOf(sections[0]);

@@ -76,7 +76,7 @@ public class ControlPanelController implements IObserver
     {
         switch (executerModel.getState())
         {
-            case ExecuterState.IDE ->       // если готово к выполнению, то можно тыкать на кнопки
+            case ExecuterState.IDLE ->       // если готово к выполнению, то можно тыкать на кнопки
             {
                 nextButton.setText("Начать программу");
                 nextButton.setDisable(false);

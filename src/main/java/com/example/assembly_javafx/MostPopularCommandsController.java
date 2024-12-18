@@ -28,11 +28,11 @@ public class MostPopularCommandsController implements IObserver
 
     @Override
     public void event(IProgramModel m)
-    {
+    {           //возвращаем отсортированный список команд по кол-ву их выполнения
         ArrayList<Map.Entry<InstuctionNames, Integer>> sortedCommandCountList = m.getSortedCommandsCount();
         mostPopularCommands.getChildren().clear();
 
-        for (int i = 0; i < sortedCommandCountList.size(); i++)
+        for (int i = 0; i < sortedCommandCountList.size(); i++)         // заполняем блок данными
         {
             Map.Entry<InstuctionNames, Integer> command = sortedCommandCountList.get(i);
 

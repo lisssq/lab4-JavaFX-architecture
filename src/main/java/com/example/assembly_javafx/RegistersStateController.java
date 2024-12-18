@@ -39,7 +39,7 @@ public class RegistersStateController implements IObserver
     @Override
     public void event(ICpuModel c)
     {
-        register1.setText(String.valueOf(c.getRegisters().get("r1")));
+        register1.setText(String.valueOf(c.getRegisters().get("r1")));      // возвращаем значение регистра и обновляем текст наших меток
         register2.setText(String.valueOf(c.getRegisters().get("r2")));
         register3.setText(String.valueOf(c.getRegisters().get("r3")));
         register4.setText(String.valueOf(c.getRegisters().get("r4")));

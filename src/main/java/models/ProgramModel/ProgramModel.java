@@ -21,7 +21,7 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
     public ProgramModel()
     {
         commands = new ArrayList<ICommandModel>();
-
+        // создаем и заполняем список набором команд
         commands.add(BCommandModel.build("init 10 20"));
         commands.add(BCommandModel.build("init 11 25"));
         commands.add(BCommandModel.build("init 12 5"));
@@ -47,7 +47,7 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
 
     void notifyObservers()
     {
-        observers.forEach(action -> action.event(this));
+        observers.forEach(action -> action.event(this));        // уведомляем всех наблюдателей о том что произошли изменения
     }
 
     public void addObserver(IObserver e)
@@ -57,7 +57,7 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
         notifyObservers();
     }
 
-    public void add(ICommandModel command)
+    public void add(ICommandModel command)      // добавляем новую команду в список команд
     {
         commands.add(command);
 
@@ -65,10 +65,9 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
         {
             int memory = Integer.parseInt(command.getArgs()[0]);
 
-            minMem = Math.min(minMem, memory);
+            minMem = Math.min(minMem, memory);      // обновление диапазона памяти
             maxMem = Math.max(maxMem, memory);
         }
-
         notifyObservers();
     }
 
@@ -78,7 +77,7 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
             throw new Exception("index is out of range");
         }
 
-        return commands.get(i);
+        return commands.get(i);     // возвращаем команду по индексу
     }
 
     public void remove(int i) throws Exception
@@ -87,24 +86,24 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
             throw new Exception("index is out of range");
         }
 
-        commands.remove(i);
+        commands.remove(i);     // удаляем команду по индексу
 
         notifyObservers();
     }
 
     public int size()
     {
-        return commands.size();
+        return commands.size();     // кол-во команд в программе
     }
 
     public ArrayList<Map.Entry<InstuctionNames, Integer>> getSortedCommandsCount()
     {
         return commands.stream().collect(Collectors.groupingBy(
                         ICommandModel::getName,
-                        Collectors.summingInt(_ -> 1)))
-                .entrySet().stream()
-                .sorted(Comparator.comparingInt(Map.Entry::getValue))
-                .collect(Collectors.toCollection(ArrayList::new));
+                        Collectors.summingInt(_ -> 1)))      // группируем команды по их имени и подсчитывает количество каждой команды
+                .entrySet().stream()                                        // создаётся поток записей, каждая из которых содержит пару ключ-значение: имя команды и количество
+                .sorted(Comparator.comparingInt(Map.Entry::getValue))       // сортировка записей по значению
+                .collect(Collectors.toCollection(ArrayList::new));          // собирает отсортированные записи в новый ArrayList
     }
 
     public InstuctionNames getPopularInstructionName()
@@ -128,7 +127,7 @@ public class ProgramModel implements Iterable<ICommandModel>, IProgramModel
     }
 
     @Override
-    public Iterator<ICommandModel> iterator()
+    public Iterator<ICommandModel> iterator()       // чтоб можно было использовать в цикле for-each
     {
         return commands.iterator();
     }

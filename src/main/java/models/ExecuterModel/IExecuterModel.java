@@ -8,9 +8,9 @@ public interface IExecuterModel
 
     void addObserver(IObserver e);
 
-    int getIteration();
+    int getIteration();     // получение текущего индекса инструкции
 
-    void discard();
+    void discard();         // отмена текущего состояния и сброс
 
-    ExecuterState getState();
+    ExecuterState getState();   // получение текущего состояния исполнителя
 }

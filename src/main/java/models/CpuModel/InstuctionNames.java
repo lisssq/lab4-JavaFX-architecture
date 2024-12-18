@@ -1,7 +1,7 @@
 package models.CpuModel;
 
 public enum InstuctionNames
-{
+    {
     init,
     mv,
     ld,
